@@ -1,3 +1,5 @@
+throw new Error('Falla intencional de la rama main');
+
 function cargarModulo(nombreModulo) {
     const contenedor = document.getElementById('contenido-principal');
     
