@@ -1,19 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema ERP - Compras</title>
+    <style>
+        .modulo-card {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 25px;
+            max-width: 700px;
+            background-color: #fcfcfc;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 20px auto;
+        }
+        .modulo-card h2 {
+            color: #00509e;
+            margin-top: 0;
+        }
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .form-row input, .form-row select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            flex: 1;
+        }
+        .btn-submit {
+            padding: 10px 20px;
+            background: #00509e;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-submit:hover {
+            background: #003d7a;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #00509e;
+            color: white;
+        }
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        .status-transit { background-color: #fff3cd; color: #856404; }
+        .status-new { background-color: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+
 <div class="modulo-card">
-    <h2>Módulo de Compras</h2>
-    <p><em>Desarrollado por: [Nombre del Colaborador 2]</em></p>
+    <h2>📦 Módulo de Compras</h2>
+    <p style="color: #666; font-size: 0.9em;"><em>Desarrollado por: [Nombre del Colaborador 2]</em></p>
     
-    <div style="margin-bottom: 20px;">
+    <div style="margin-bottom: 30px;">
         <h3>Nueva Orden de Compra</h3>
-        <form onsubmit="event.preventDefault(); alert('Orden generada (Simulación)');">
-            <input type="text" placeholder="Producto a solicitar" style="padding: 8px; width: 40%;" required>
-            <input type="number" placeholder="Cantidad" style="padding: 8px; width: 20%;" required>
-            <button type="submit" style="padding: 8px 15px; background: #00509e; color: white; border: none; border-radius: 4px;">Generar Orden</button>
+        <form id="form-compras">
+            <div class="form-row">
+                <input type="text" id="producto" placeholder="Producto a solicitar" required>
+                <input type="number" id="cantidad" placeholder="Cantidad" min="1" required>
+            </div>
+            <div class="form-row">
+                <input type="text" id="proveedor" placeholder="Nombre del Proveedor" required>
+                <input type="date" id="fecha-llegada" required>
+            </div>
+            <button type="submit" class="btn-submit">+ Generar Orden</button>
         </form>
     </div>
 
     <h3>Órdenes en Tránsito</h3>
-    <ul style="list-style-type: square; line-height: 1.8;">
-        <li><strong>Proveedor A:</strong> 50 Laptops (Llegada esperada: 10/11/2026)</li>
-        <li><strong>Proveedor B:</strong> 200 Cables HDMI (Llegada esperada: 12/11/2026)</li>
-    </ul>
+    <table id="tabla-ordenes">
+        <thead>
+            <tr>
+                <th>Proveedor</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Llegada Esperada</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Proveedor A</td>
+                <td>Laptops Dell</td>
+                <td>50</td>
+                <td>10/11/2026</td>
+                <td><span class="status-badge status-transit">En Tránsito</span></td>
+            </tr>
+            <tr>
+                <td>Proveedor B</td>
+                <td>Cables HDMI</td>
+                <td>200</td>
+                <td>12/11/2026</td>
+                <td><span class="status-badge status-transit">En Tránsito</span></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+
+<script>
+    // Capturamos el evento de envío del formulario
+    document.getElementById('form-compras').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita que la página se recargue
+        
+        // Obtenemos los valores del formulario
+        const producto = document.getElementById('producto').value;
+        const cantidad = document.getElementById('cantidad').value;
+        const proveedor = document.getElementById('proveedor').value;
+        
+        // Formateamos la fecha (básico)
+        const fechaRaw = document.getElementById('fecha-llegada').value;
+        const [year, month, day] = fechaRaw.split('-');
+        const fechaFormateada = `${day}/${month}/${year}`;
+        
+        // Creamos una nueva fila para la tabla
+        const tbody = document.querySelector('#tabla-ordenes tbody');
+        const nuevaFila = document.createElement('tr');
+        
+        nuevaFila.innerHTML = `
+            <td>${proveedor}</td>
+            <td>${producto}</td>
+            <td>${cantidad}</td>
+            <td>${fechaFormateada}</td>
+            <td><span class="status-badge status-new">Recién Creada</span></td>
+        `;
+        
+        // Agregamos la fila a la tabla
+        tbody.appendChild(nuevaFila);
+        
+        // Limpiamos el formulario y avisamos al usuario
+        this.reset();
+        alert('Orden generada e insertada en el inventario temporal.');
+    });
+</script>
+
+</body>
+</html>
