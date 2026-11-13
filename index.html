@@ -3,26 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Gestión Empresarial</title>
+    <meta name="theme-color" content="#111827">
+    <title>Nexo | Gestión empresarial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Panel de Control</h1>
-        <nav id="menu-navegacion">
-            <button onclick="cargarModulo('inicio')">Inicio</button>
-            <button onclick="cargarModulo('ventas')">Ventas</button>
-            <button onclick="cargarModulo('compras')">Compras</button>
-            <button onclick="cargarModulo('inventario')">Inventario</button>
-            <button onclick="cargarModulo('clientes')">Clientes</button>
-        </nav>
-    </header>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="#" onclick="cargarModulo('inicio'); return false;">
+                <span class="brand-mark">N</span>
+                <span><strong>Nexo</strong><small>Business Suite</small></span>
+            </a>
 
-    <main id="contenido-principal">
-        <h2>Bienvenido al Sistema</h2>
-        <p>Selecciona un módulo en la barra de navegación superior.</p>
-    </main>
+            <p class="nav-label">Workspace</p>
+            <nav id="menu-navegacion" aria-label="Navegación principal">
+                <button class="nav-button active" data-module="inicio" onclick="cargarModulo('inicio')">
+                    <span class="nav-icon">⌂</span> Resumen
+                </button>
+                <button class="nav-button" data-module="ventas" onclick="cargarModulo('ventas')">
+                    <span class="nav-icon">↗</span> Ventas
+                </button>
+                <button class="nav-button" data-module="compras" onclick="cargarModulo('compras')">
+                    <span class="nav-icon">＋</span> Compras
+                </button>
+                <button class="nav-button" data-module="inventario" onclick="cargarModulo('inventario')">
+                    <span class="nav-icon">▦</span> Inventario
+                </button>
+                <button class="nav-button" data-module="clientes" onclick="cargarModulo('clientes')">
+                    <span class="nav-icon">♧</span> Clientes
+                </button>
+            </nav>
 
+            <div class="sidebar-footer">
+                <span class="status-dot"></span>
+                <span><strong>Todo en orden</strong><small>Sistema operativo</small></span>
+            </div>
+        </aside>
+
+        <div class="main-area">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">Panel de control / <span id="breadcrumb">Resumen</span></p>
+                    <h1 id="page-title">Buenos días, equipo <span>✦</span></h1>
+                </div>
+                <div class="topbar-actions">
+                    <button class="icon-button" aria-label="Notificaciones">♢<span class="notification-dot"></span></button>
+                    <div class="user-chip"><span>AG</span><strong>Admin</strong><small>Administrador</small></div>
+                </div>
+            </header>
+
+            <main id="contenido-principal">
+                <section class="welcome-card">
+                    <div>
+                        <span class="section-tag">Resumen general</span>
+                        <h2>Todo lo que importa,<br><em>en un solo lugar.</em></h2>
+                        <p>Consulta el rendimiento de tu negocio y toma decisiones con claridad.</p>
+                        <button class="primary-button" onclick="cargarModulo('ventas')">Ver ventas <span>→</span></button>
+                    </div>
+                    <div class="welcome-orbit" aria-hidden="true"><span>✦</span><i></i><b></b></div>
+                </section>
+
+                <div class="section-heading">
+                    <div><p class="eyebrow">En tiempo real</p><h2>Resumen de hoy</h2></div>
+                    <span class="date-pill">● 13 NOV 2026</span>
+                </div>
+                <section class="stats-grid">
+                    <article class="stat-card stat-purple"><span class="stat-icon">↗</span><p>Ventas del día</p><strong>$4,500</strong><small class="positive">↑ 12.5% <span>vs. ayer</span></small></article>
+                    <article class="stat-card stat-orange"><span class="stat-icon">▦</span><p>Productos en stock</p><strong>1,248</strong><small class="positive">↑ 4.2% <span>este mes</span></small></article>
+                    <article class="stat-card stat-green"><span class="stat-icon">♧</span><p>Clientes activos</p><strong>284</strong><small class="positive">↑ 8.1% <span>este mes</span></small></article>
+                </section>
+                <section class="activity-card">
+                    <div class="section-heading compact"><div><p class="eyebrow">Actividad reciente</p><h2>Últimos movimientos</h2></div><button class="text-button" onclick="cargarModulo('ventas')">Ver todo →</button></div>
+                    <div class="activity-list">
+                        <div class="activity-row"><span class="activity-avatar purple">↗</span><div><strong>Venta completada</strong><p>Orden #V-0010 · Acme Corp</p></div><time>Hace 12 min</time><b class="amount">+$1,250</b></div>
+                        <div class="activity-row"><span class="activity-avatar orange">＋</span><div><strong>Nueva orden de compra</strong><p>Proveedor A · 50 Laptops Dell</p></div><time>Hace 38 min</time><b class="amount">En tránsito</b></div>
+                        <div class="activity-row"><span class="activity-avatar green">♧</span><div><strong>Nuevo cliente registrado</strong><p>Tech Solutions · Cliente regular</p></div><time>Hace 1 h</time><b class="amount">Completado</b></div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
     <script src="js/app.js"></script>
 </body>
 </html>

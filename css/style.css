@@ -1,35 +1,26 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
+:root {
+    --ink: #172033;
+    --muted: #8891a5;
+    --line: #e8ebf2;
+    --surface: #fff;
+    --canvas: #f7f8fc;
+    --purple: #7657f6;
+    --navy: #111827;
 }
-header {
-    background-color: #003366;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-}
-nav button {
-    margin: 0 5px;
-    padding: 8px 15px;
-    cursor: pointer;
-    background-color: #00509e;
-    color: white;
-    border: none;
-    border-radius: 4px;
-}
-nav button:hover {
-    background-color: #0073e6;
-}
-main {
-    padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-}
-.modulo-card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; background: var(--canvas); color: var(--ink); font-family: "DM Sans", sans-serif; }
+button { font: inherit; }
+.app-shell { display: flex; min-height: 100vh; }
+.sidebar { width: 248px; flex: 0 0 248px; padding: 30px 18px 22px; background: var(--navy); color: #fff; display: flex; flex-direction: column; }
+.brand { display: flex; align-items: center; gap: 11px; color: #fff; text-decoration: none; margin: 0 12px 58px; }
+.brand-mark { display: grid; place-items: center; width: 36px; height: 36px; color: #fff; background: linear-gradient(135deg, #836cff, #5b42dc); border-radius: 12px; font: 700 20px "Space Grotesk"; }
+.brand strong { display: block; font: 700 20px "Space Grotesk"; letter-spacing: -.5px; }.brand small { display: block; color: #737d93; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; }
+.nav-label, .eyebrow { color: #8d96aa; font-size: 10px; font-weight: 700; letter-spacing: 1.3px; margin: 0 14px 14px; text-transform: uppercase; }.nav-button { width: 100%; padding: 12px 14px; border: 0; border-radius: 10px; background: transparent; color: #8992a6; cursor: pointer; display: flex; align-items: center; gap: 13px; font-size: 14px; text-align: left; transition: .2s ease; }.nav-button:hover, .nav-button.active { color: #fff; background: #252d40; }.nav-button.active { box-shadow: inset 3px 0 var(--purple); }.nav-icon { width: 19px; color: #a7afc1; font-size: 19px; text-align: center; }.nav-button.active .nav-icon { color: #a895ff; }
+.sidebar-footer { display: flex; gap: 10px; align-items: center; margin-top: auto; padding: 15px 12px; border-top: 1px solid #293142; color: #fff; font-size: 12px; }.sidebar-footer strong, .sidebar-footer small { display: block; }.sidebar-footer small { color: #7d8799; margin-top: 3px; font-size: 10px; }.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #53d39d; box-shadow: 0 0 0 4px #254439; }
+.main-area { width: calc(100% - 248px); }.topbar { min-height: 112px; padding: 28px clamp(24px, 5vw, 72px); background: var(--surface); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }.topbar .eyebrow { margin: 0 0 8px; }.topbar h1 { margin: 0; font: 600 clamp(20px, 2.2vw, 28px) "Space Grotesk"; letter-spacing: -.7px; }.topbar h1 span { color: #f1aa4c; }.topbar-actions { display: flex; align-items: center; gap: 20px; }.icon-button { position: relative; border: 0; background: none; color: #7c869a; font-size: 25px; cursor: pointer; }.notification-dot { position: absolute; top: 3px; right: 2px; width: 6px; height: 6px; border-radius: 50%; background: #fa786b; border: 1px solid #fff; }.user-chip { display: grid; grid-template-columns: 35px auto; column-gap: 9px; align-items: center; font-size: 12px; }.user-chip span { grid-row: span 2; display: grid; place-items: center; width: 35px; height: 35px; border-radius: 11px; color: #634be5; background: #e9e5ff; font-weight: 700; }.user-chip strong { font-size: 12px; }.user-chip small { color: var(--muted); font-size: 10px; }
+#contenido-principal { max-width: 1240px; margin: 0 auto; padding: 38px clamp(24px, 5vw, 72px) 60px; }.welcome-card { position: relative; min-height: 250px; overflow: hidden; padding: 38px 42px; border-radius: 20px; color: #fff; background: linear-gradient(110deg, #322477, #7657f6); box-shadow: 0 16px 35px -18px #7657f6; }.welcome-card h2 { margin: 13px 0 10px; font: 600 clamp(25px, 3.2vw, 38px) "Space Grotesk"; letter-spacing: -1.5px; line-height: 1.1; }.welcome-card h2 em { color: #d3cbff; font-style: normal; }.welcome-card p { color: #d5d0f4; font-size: 13px; }.section-tag { color: #c9c1ff; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }.primary-button { margin-top: 14px; padding: 10px 16px; border: 0; border-radius: 8px; color: #342674; background: #fff; cursor: pointer; font-size: 12px; font-weight: 700; }.primary-button span { margin-left: 14px; font-size: 16px; }.welcome-orbit { position: absolute; right: 9%; top: -50px; width: 300px; height: 300px; border: 1px solid #ffffff3d; border-radius: 50%; }.welcome-orbit:before, .welcome-orbit:after { content: ""; position: absolute; inset: 30px; border: 1px solid #ffffff2e; border-radius: 50%; }.welcome-orbit:after { inset: 72px; }.welcome-orbit span { position: absolute; right: 54px; top: 72px; color: #efd071; font-size: 34px; }.welcome-orbit i, .welcome-orbit b { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: #fff; }.welcome-orbit i { left: 32px; top: 145px; }.welcome-orbit b { right: 18px; bottom: 60px; background: #f08a72; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; margin: 42px 0 18px; }.section-heading .eyebrow { margin: 0 0 5px; }.section-heading h2 { margin: 0; font: 600 21px "Space Grotesk"; }.date-pill { padding: 8px 12px; border: 1px solid var(--line); border-radius: 7px; color: #7f899b; background: #fff; font-size: 10px; font-weight: 700; letter-spacing: .5px; }.date-pill:first-letter { color: #59bf92; }.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; }.stat-card { position: relative; padding: 21px 22px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }.stat-icon { display: grid; place-items: center; width: 32px; height: 32px; margin-bottom: 20px; border-radius: 9px; font-weight: 700; }.stat-card p { margin: 0 0 9px; color: #818a9c; font-size: 12px; }.stat-card strong { display: block; font: 700 27px "Space Grotesk"; }.stat-card small { display: block; margin-top: 8px; color: #57ba91; font-size: 11px; font-weight: 700; }.stat-card small span { color: #a3aaba; font-weight: 400; }.stat-purple .stat-icon { color: #7657f6; background: #ece9ff; }.stat-orange .stat-icon { color: #ed994a; background: #fff0dc; }.stat-green .stat-icon { color: #4ab68b; background: #ddf6eb; }
+.activity-card { padding: 24px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }.section-heading.compact { margin: 0 0 17px; align-items: center; }.text-button { padding: 0; border: 0; color: #7657f6; background: none; cursor: pointer; font-size: 11px; font-weight: 700; }.activity-row { display: grid; grid-template-columns: 38px 1fr auto auto; gap: 13px; align-items: center; padding: 14px 0; border-top: 1px solid #f0f1f5; }.activity-avatar { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; font-weight: 700; }.activity-avatar.purple { color: #7657f6; background: #ece9ff; }.activity-avatar.orange { color: #ed994a; background: #fff0dc; }.activity-avatar.green { color: #4ab68b; background: #ddf6eb; }.activity-row strong { display: block; font-size: 12px; }.activity-row p, .activity-row time { margin: 4px 0 0; color: #9da5b3; font-size: 11px; }.activity-row time { margin: 0; }.amount { color: #57ba91; font-size: 11px; }
+.modulo-card { color: var(--ink); border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 8px 25px #28334b0a; }
+@media (max-width: 760px) { .sidebar { width: 68px; flex-basis: 68px; padding: 22px 10px; }.brand { margin: 0 auto 50px; }.brand > span:last-child, .nav-label, .nav-button:not(.active)::after, .nav-button { font-size: 0; }.nav-button { justify-content: center; padding: 13px 0; }.nav-icon { font-size: 19px; }.sidebar-footer { padding: 14px 0; justify-content: center; }.sidebar-footer > span:last-child { display: none; }.main-area { width: calc(100% - 68px); }.topbar { padding: 22px 20px; }.user-chip strong, .user-chip small { display: none; }.topbar-actions { gap: 6px; } #contenido-principal { padding: 25px 20px 45px; }.welcome-card { padding: 28px; }.welcome-orbit { right: -120px; opacity: .7; }.stats-grid { grid-template-columns: 1fr; }.activity-row { grid-template-columns: 38px 1fr auto; }.activity-row time { display: none; } }
+@media (max-width: 450px) { .topbar h1 { font-size: 19px; }.topbar .eyebrow { font-size: 8px; }.date-pill { display: none; }.welcome-card h2 { font-size: 28px; }.activity-card { padding: 18px 15px; } }
