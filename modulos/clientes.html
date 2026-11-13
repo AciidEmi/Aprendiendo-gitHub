@@ -1,22 +1,53 @@
 <div class="modulo-card">
-    <h2>Directorio de Clientes</h2>
-    <p><em>Desarrollado por: [Nombre del Colaborador 4]</em></p>
-    
-    <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
-        
-        <div style="border: 1px solid #ddd; padding: 15px; border-radius: 8px; width: calc(50% - 20px); box-sizing: border-box;">
-            <h3 style="margin: 0 0 10px 0; color: #003366;">Acme Corp</h3>
-            <p style="margin: 5px 0;"><strong>Contacto:</strong> María López</p>
-            <p style="margin: 5px 0;"><strong>Correo:</strong> m.lopez@acmecorp.com</p>
-            <p style="margin: 5px 0;"><strong>Nivel:</strong> Cliente VIP ⭐</p>
-        </div>
+    <style>
+        .dc { --navy: #003366; --ink: #1c2733; --muted: #5d6b7a; --line: #dbe3ec; --gold: #b8860b; --gold-bg: #fff6dc; --paper: #f6f9fc; }
+        .dc h2 { margin: 0; color: var(--navy); font-size: 1.6rem; }
+        .dc .dc-autor { margin: 4px 0 0; color: var(--muted); font-size: .9rem; }
+        .dc .dc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 22px; }
+        .dc .dc-item { position: relative; display: flex; gap: 14px; align-items: flex-start; padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: transform .15s ease, box-shadow .15s ease; }
+        .dc .dc-item:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0, 51, 102, .12); }
+        .dc .dc-item.vip { border-color: #e6c766; background: linear-gradient(135deg, #fffdf5, #fff6dc); }
+        .dc .dc-item.vip::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--gold); }
+        .dc .dc-avatar { flex: none; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--navy); color: #fff; font-weight: 700; font-size: 1.05rem; letter-spacing: .5px; }
+        .dc .vip .dc-avatar { background: var(--gold); }
+        .dc .dc-body { min-width: 0; }
+        .dc h3 { margin: 0 0 8px; color: var(--ink); font-size: 1.1rem; }
+        .dc .dc-fila { margin: 4px 0; font-size: .92rem; color: var(--muted); }
+        .dc .dc-fila strong { color: var(--ink); font-weight: 600; }
+        .dc .dc-fila a { color: var(--navy); text-decoration: none; border-bottom: 1px dashed var(--navy); word-break: break-all; }
+        .dc .dc-fila a:hover { background: var(--paper); }
+        .dc .dc-fila a:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+        .dc .dc-nivel { display: inline-block; margin-top: 10px; padding: 3px 12px; border-radius: 999px; font-size: .8rem; font-weight: 600; background: var(--paper); color: var(--navy); border: 1px solid var(--line); }
+        .dc .vip .dc-nivel { background: var(--gold-bg); color: #7a5a00; border-color: #e6c766; }
+        @media (prefers-reduced-motion: reduce) { .dc .dc-item { transition: none; } .dc .dc-item:hover { transform: none; } }
+    </style>
 
-        <div style="border: 1px solid #ddd; padding: 15px; border-radius: 8px; width: calc(50% - 20px); box-sizing: border-box;">
-            <h3 style="margin: 0 0 10px 0; color: #003366;">Tech Solutions</h3>
-            <p style="margin: 5px 0;"><strong>Contacto:</strong> Juan Pérez</p>
-            <p style="margin: 5px 0;"><strong>Correo:</strong> jperez@techsol.com</p>
-            <p style="margin: 5px 0;"><strong>Nivel:</strong> Cliente Regular</p>
-        </div>
+    <div class="dc">
+        <h2>Directorio de Clientes</h2>
+        <p class="dc-autor"><em>Desarrollado por: [Nombre del Colaborador 4]</em></p>
 
+        <div class="dc-grid">
+
+            <article class="dc-item vip">
+                <div class="dc-avatar" aria-hidden="true">AC</div>
+                <div class="dc-body">
+                    <h3>Acme Corp</h3>
+                    <p class="dc-fila"><strong>Contacto:</strong> María López</p>
+                    <p class="dc-fila"><strong>Correo:</strong> <a href="mailto:m.lopez@acmecorp.com">m.lopez@acmecorp.com</a></p>
+                    <span class="dc-nivel">⭐ Cliente VIP</span>
+                </div>
+            </article>
+
+            <article class="dc-item">
+                <div class="dc-avatar" aria-hidden="true">TS</div>
+                <div class="dc-body">
+                    <h3>Tech Solutions</h3>
+                    <p class="dc-fila"><strong>Contacto:</strong> Juan Pérez</p>
+                    <p class="dc-fila"><strong>Correo:</strong> <a href="mailto:jperez@techsol.com">jperez@techsol.com</a></p>
+                    <span class="dc-nivel">Cliente Regular</span>
+                </div>
+            </article>
+
+        </div>
     </div>
 </div>

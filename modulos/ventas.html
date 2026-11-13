@@ -1,34 +1,218 @@
+<style>
+.modulo-card {
+    --vt-ink: #12263f;
+    --vt-muted: #5f6f84;
+    --vt-line: #e3e9f1;
+    --vt-surface: #ffffff;
+    --vt-tint: #f3f7fc;
+    --vt-brand: #0b3c78;
+    --vt-ok: #0f8a5f;
+    --vt-ok-bg: #e3f6ee;
+    --vt-wait: #b86a00;
+    --vt-wait-bg: #fff1dc;
+
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    color: var(--vt-ink);
+    background: var(--vt-surface);
+    border: 1px solid var(--vt-line);
+    border-radius: 18px;
+    padding: 28px;
+    max-width: 860px;
+    box-shadow: 0 1px 2px rgba(18, 38, 63, .06), 0 12px 32px -12px rgba(18, 38, 63, .18);
+}
+.modulo-card * { box-sizing: border-box; }
+
+.modulo-card .vt-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+.modulo-card .vt-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #0b3c78, #1d7fd1);
+    color: #fff;
+    flex: none;
+}
+.modulo-card h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+}
+.modulo-card .vt-autor {
+    margin: 2px 0 0;
+    font-size: .85rem;
+    color: var(--vt-muted);
+    font-style: normal;
+}
+
+.modulo-card .vt-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+.modulo-card .vt-kpi {
+    background: var(--vt-tint);
+    border-radius: 14px;
+    padding: 18px 20px;
+}
+.modulo-card .vt-kpi-label {
+    font-size: .85rem;
+    color: var(--vt-muted);
+    margin: 0 0 6px;
+}
+.modulo-card .vt-kpi-valor {
+    margin: 0;
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums;
+    color: var(--vt-brand);
+}
+
+.modulo-card .vt-split {
+    margin-bottom: 28px;
+}
+.modulo-card .vt-bar {
+    display: flex;
+    height: 12px;
+    border-radius: 99px;
+    overflow: hidden;
+    background: var(--vt-line);
+}
+.modulo-card .vt-bar-ok { background: var(--vt-ok); flex: 1250; }
+.modulo-card .vt-bar-wait { background: #f2a33a; flex: 3250; }
+.modulo-card .vt-legend {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-top: 10px;
+    font-size: .85rem;
+    color: var(--vt-muted);
+}
+.modulo-card .vt-legend strong { color: var(--vt-ink); font-variant-numeric: tabular-nums; }
+.modulo-card .vt-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.modulo-card .vt-table-wrap { overflow-x: auto; }
+.modulo-card table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 480px;
+}
+.modulo-card th {
+    padding: 12px 14px;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--vt-muted);
+    border-bottom: 2px solid var(--vt-line);
+}
+.modulo-card td {
+    padding: 16px 14px;
+    border-bottom: 1px solid var(--vt-line);
+    font-variant-numeric: tabular-nums;
+}
+.modulo-card tbody tr { transition: background .15s ease; }
+.modulo-card tbody tr:hover { background: var(--vt-tint); }
+.modulo-card .vt-folio { font-weight: 600; color: var(--vt-brand); }
+.modulo-card .vt-monto { font-weight: 600; }
+.modulo-card .vt-th-monto, .modulo-card .vt-monto { text-align: right; }
+
+.modulo-card .vt-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: .82rem;
+    font-weight: 600;
+}
+.modulo-card .vt-pill::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
+.modulo-card .vt-pill-ok { color: var(--vt-ok); background: var(--vt-ok-bg); }
+.modulo-card .vt-pill-wait { color: var(--vt-wait); background: var(--vt-wait-bg); }
+
+@media (max-width: 520px) {
+    .modulo-card { padding: 20px; border-radius: 14px; }
+    .modulo-card .vt-kpi-valor { font-size: 1.7rem; }
+}
+</style>
+
 <div class="modulo-card">
-    <h2>Módulo de Ventas</h2>
-    <p><em>Desarrollado por: [Nombre del Colaborador 1]</em></p>
-    
-    <div style="display: flex; gap: 20px; margin-bottom: 20px;">
-        <div style="background: #e6f2ff; padding: 10px; border-radius: 5px; flex: 1;">
-            <strong>Ventas de Hoy:</strong> $4,500.00
+    <div class="vt-head">
+        <div class="vt-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
         </div>
-        <div style="background: #e6f2ff; padding: 10px; border-radius: 5px; flex: 1;">
-            <strong>Órdenes Completadas:</strong> 12
+        <div>
+            <h2>Módulo de Ventas</h2>
+            <p class="vt-autor">Desarrollado por: [Nombre del Colaborador 1]</p>
         </div>
     </div>
 
-    <table style="width: 100%; text-align: left; border-collapse: collapse;">
-        <tr style="background-color: #003366; color: white;">
-            <th style="padding: 10px;">Folio</th>
-            <th style="padding: 10px;">Fecha</th>
-            <th style="padding: 10px;">Monto Total</th>
-            <th style="padding: 10px;">Estado</th>
-        </tr>
-        <tr style="border-bottom: 1px solid #ccc;">
-            <td style="padding: 10px;">V-0010</td>
-            <td style="padding: 10px;">06/11/2026</td>
-            <td style="padding: 10px;">$1,250.00</td>
-            <td style="padding: 10px; color: green;">Pagado</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #ccc;">
-            <td style="padding: 10px;">V-0011</td>
-            <td style="padding: 10px;">06/11/2026</td>
-            <td style="padding: 10px;">$3,250.00</td>
-            <td style="padding: 10px; color: orange;">Pendiente</td>
-        </tr>
-    </table>
+    <div class="vt-kpis">
+        <div class="vt-kpi">
+            <p class="vt-kpi-label">Ventas de hoy</p>
+            <p class="vt-kpi-valor">$4,500.00</p>
+        </div>
+        <div class="vt-kpi">
+            <p class="vt-kpi-label">Órdenes completadas</p>
+            <p class="vt-kpi-valor">12</p>
+        </div>
+    </div>
+
+    <div class="vt-split">
+        <div class="vt-bar" role="img" aria-label="Pagado $1,250.00 y pendiente $3,250.00 del total de hoy">
+            <div class="vt-bar-ok"></div>
+            <div class="vt-bar-wait"></div>
+        </div>
+        <div class="vt-legend">
+            <span><span class="vt-dot" style="background: var(--vt-ok);"></span>Pagado <strong>$1,250.00</strong></span>
+            <span><span class="vt-dot" style="background: #f2a33a;"></span>Pendiente <strong>$3,250.00</strong></span>
+        </div>
+    </div>
+
+    <div class="vt-table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Folio</th>
+                    <th>Fecha</th>
+                    <th class="vt-th-monto">Monto total</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="vt-folio">V-0010</td>
+                    <td>06/11/2026</td>
+                    <td class="vt-monto">$1,250.00</td>
+                    <td><span class="vt-pill vt-pill-ok">Pagado</span></td>
+                </tr>
+                <tr>
+                    <td class="vt-folio">V-0011</td>
+                    <td>06/11/2026</td>
+                    <td class="vt-monto">$3,250.00</td>
+                    <td><span class="vt-pill vt-pill-wait">Pendiente</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
